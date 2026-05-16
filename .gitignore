@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup folders
+bus-tracker_bkp/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# Claude Code internals
+.claude/
+
+# Project-internal notes
+improvements.txt

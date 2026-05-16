@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Navsari Live Bus Tracker</title>
+    <meta name="description" content="Real-time bus tracking for Navsari, Gujarat. Live GPS positions, speed, and direction for the city fleet."/>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="anonymous"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+
+    <link rel="stylesheet" href="css/styles.css"/>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <i class="fas fa-bus"></i>
+          <h1>Navsari Bus Tracker</h1>
+        </div>
+        <div class="header-controls">
+          <button id="refreshBtn" class="btn btn-primary">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+          <span id="lastUpdate" class="status-text">Last update: --:--:--</span>
+          <span id="connectionStatus" class="status-indicator offline">&#9679; Offline</span>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="metrics-summary">
+            <div class="metric-card">
+              <i class="fas fa-bus"></i>
+              <div class="metric-value" id="totalBuses">0</div>
+              <div class="metric-label">Total Buses</div>
+            </div>
+            <div class="metric-card">
+              <i class="fas fa-tachometer-alt"></i>
+              <div class="metric-value" id="movingBuses">0</div>
+              <div class="metric-label">Moving</div>
+            </div>
+            <div class="metric-card">
+              <i class="fas fa-pause-circle"></i>
+              <div class="metric-value" id="stoppedBuses">0</div>
+              <div class="metric-label">Stopped</div>
+            </div>
+            <div class="metric-card">
+              <i class="fas fa-chart-line"></i>
+              <div class="metric-value" id="avgSpeed">0 km/h</div>
+              <div class="metric-label">Avg Speed</div>
+            </div>
+          </div>
+
+          <div class="bus-list-container">
+            <div class="section-header">
+              <h3><i class="fas fa-list"></i> Bus List</h3>
+              <input type="text" id="searchBus" class="search-input" placeholder="Search bus..."/>
+            </div>
+            <div id="busList" class="bus-list"></div>
+          </div>
+        </aside>
+
+        <!-- Map Container -->
+        <section class="map-container">
+          <div id="map"></div>
+
+          <!-- Map Controls -->
+          <div class="map-controls">
+            <button id="centerMapBtn" class="map-btn" title="Center Map">
+              <i class="fas fa-crosshairs"></i>
+            </button>
+            <button id="toggleLayersBtn" class="map-btn" title="Toggle Map Style">
+              <i class="fas fa-layer-group"></i>
+            </button>
+            <button id="toggleClusterBtn" class="map-btn" title="Toggle Clustering">
+              <i class="fas fa-object-group"></i>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <!-- Bus Detail Modal -->
+      <div id="busModal" class="modal">
+        <div class="modal-content">
+          <span class="modal-close">&times;</span>
+          <div class="modal-header">
+            <h2 id="modalBusName">Bus Name</h2>
+            <span id="modalBusStatus" class="status-badge">Stopped</span>
+          </div>
+          <div class="modal-body">
+            <div class="detail-grid">
+              <div class="detail-item">
+                <label>Bus ID</label>
+                <span id="modalBusId">--</span>
+              </div>
+              <div class="detail-item">
+                <label>Speed</label>
+                <span id="modalSpeed">-- km/h</span>
+              </div>
+              <div class="detail-item">
+                <label>Direction</label>
+                <span id="modalDirection">--&deg;</span>
+              </div>
+              <div class="detail-item">
+                <label>Last Update</label>
+                <span id="modalLastUpdate">--</span>
+              </div>
+              <div class="detail-item full-width">
+                <label>Coordinates</label>
+                <span id="modalCoords">--, --</span>
+              </div>
+            </div>
+            <div class="modal-map-preview" id="modalMapPreview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
