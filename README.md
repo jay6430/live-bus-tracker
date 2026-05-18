@@ -106,8 +106,7 @@ navsari-bus-tracker/
 
 ## Testing
 
-This web app was tested on real web browsers using [TestGrid's TestOS](https://testgrid.io) platform, ensuring cross-browser compatibility and correct rendering across Chrome, Firefox, and Safari on both desktop and mobile viewports.
-
+This web app was tested on [TestGrid's TestOS](https://testgrid.io) platform.
 ---
 
 ## Data Source
